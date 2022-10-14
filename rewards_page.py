@@ -1,5 +1,5 @@
 import time
-import keyboard
+from pyautogui import click
 import config
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -34,6 +34,7 @@ def rewards():
     time.sleep(2)
     driver.switch_to.window(driver.window_handles[1])
     driver.close()
+    driver.switch_to.window(c)
 
     driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit106']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']/a[@class='ds-card-sec ng-scope']/div[@class='actionLink x-hidden-vp1']/span[@class='pointLink ng-binding']").click()
 
@@ -81,61 +82,47 @@ def rewards():
 
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit106']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']").click()
 
-        chld = driver.window_handles[2]
+        chld = driver.window_handles[1]
         driver.switch_to.window(chld)
 
-        k = driver.find_element(By.XPATH, "//div[@class='bt_poll']/div[@class='btOptions2 bt_pollOptions']/div[@id='btoption0']").click()
-
-        driver.switch_to.window(parent)
-
         time.sleep(2)
 
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit106']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double']/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
-
-        time.sleep(2)
-        driver.close()
-
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit106']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']").click()
-
-        time.sleep(2)
-        driver.close()
-
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit106']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']").click()
+        driver.find_element(By.XPATH, "//div[@class='bt_poll']/div[@class='btOptions2 bt_pollOptions']/div[@id='btoption0']").click()
 
         time.sleep(2)
         driver.close()
 
 
 def main():
-    # driver.get("https://rewards.microsoft.com/")
-    # driver.find_element(By.ID,"raf-signin-link-id").click()
-    # time.sleep(1)
-    # username = driver.find_element("name", "loginfmt")
-    # username.send_keys(config.login_reward)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # password = driver.find_element("name", "passwd")
-    # password.send_keys(config.password_reward)
-    # time.sleep(.5)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # time.sleep(.5)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # rewards()
-    # driver.quit()
+    driver.get("https://rewards.microsoft.com/")
+    driver.find_element(By.ID,"raf-signin-link-id").click()
+    time.sleep(1)
+    username = driver.find_element("name", "loginfmt")
+    username.send_keys(config.login_reward)
+    driver.find_element(By.ID,"idSIButton9").click()
+    password = driver.find_element("name", "passwd")
+    password.send_keys(config.password_reward)
+    time.sleep(.5)
+    driver.find_element(By.ID,"idSIButton9").click()
+    time.sleep(.5)
+    driver.find_element(By.ID,"idSIButton9").click()
+    rewards()
+    driver.quit()
 
-    # driver.get("https://rewards.microsoft.com/")
-    # driver.find_element(By.ID,"raf-signin-link-id").click()
-    # time.sleep(1)
-    # username = driver.find_element("name", "loginfmt")
-    # username.send_keys(config.login_gmail)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # password = driver.find_element("name", "passwd")
-    # password.send_keys(config.password_gmail)
-    # time.sleep(.5)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # time.sleep(.5)
-    # driver.find_element(By.ID,"idSIButton9").click()
-    # rewards()
-    # driver.quit()
+    driver.get("https://rewards.microsoft.com/")
+    driver.find_element(By.ID,"raf-signin-link-id").click()
+    time.sleep(1)
+    username = driver.find_element("name", "loginfmt")
+    username.send_keys(config.login_gmail)
+    driver.find_element(By.ID,"idSIButton9").click()
+    password = driver.find_element("name", "passwd")
+    password.send_keys(config.password_gmail)
+    time.sleep(.5)
+    driver.find_element(By.ID,"idSIButton9").click()
+    time.sleep(.5)
+    driver.find_element(By.ID,"idSIButton9").click()
+    rewards()
+    driver.quit()
 
     driver.get("https://rewards.microsoft.com/")
     driver.find_element(By.ID,"raf-signin-link-id").click()
