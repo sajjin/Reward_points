@@ -48,6 +48,8 @@ def checker():
     second_button_x = second_button.get_attribute("class").split()
     third_button_x = third_button.get_attribute("class").split()
 
+    print("first pass to check:")
+
     for i in first_button_x:
         if i == "mee-icon-AddMedium":
             first_button_x = i
@@ -170,7 +172,6 @@ def secound_daily_task():
         try: # this is fot the five answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='btOptions']/div[@class='slide']")))
             count_of_filled_circles =  driver.find_element(By.XPATH, "//span[@class='btCorOps']/span[@class='bt_corOpStat']/span[@id='bt_corOpCnt']")
-            print(count_of_filled_circles)
             i = 0
             x = 3
             points = 0
@@ -180,11 +181,9 @@ def secound_daily_task():
                 FiveAns(points)
                 i += 1
                 time.sleep(8)
-            driver.close()
         except: # this is for the one answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='textBasedMultiChoice']/div[@class='rq_button']")))
             count_of_filled_circles =  driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']")
-            print(count_of_filled_circles)
             points = 0
             i = 0
             x = 3
@@ -194,7 +193,7 @@ def secound_daily_task():
                 OneAns(points)
                 i += 1
                 time.sleep(8)
-            driver.close()
+    driver.close()
     driver.switch_to.window(parent)
 
 
@@ -226,7 +225,7 @@ def extra_activities():
     driver.switch_to.window(parent)
     
     try:
-        driver.find_element(By.XPATH,"/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double']/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']/div[@id='ma-card-link']/span[@class='pointLink ng-binding']").click()
+        driver.find_element(By.XPATH,"/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
 
         
         chld = driver.window_handles[1]
@@ -238,7 +237,7 @@ def extra_activities():
         time.sleep(.5)
 
     try:
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']/div[@id='ma-card-link']/span[@class='pointLink ng-binding']").click()
+        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
 
         chld = driver.window_handles[1]
         driver.switch_to.window(chld)
@@ -249,7 +248,7 @@ def extra_activities():
         time.sleep(.5)
 
     try:
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']/div[@id='ma-card-link']/span[@class='pointLink ng-binding']").click()
+        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][3]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
 
         chld = driver.window_handles[1]
         driver.switch_to.window(chld)
@@ -279,6 +278,7 @@ def main():
     driver.find_element(By.ID,"idSIButton9").click()
     time.sleep(4)
     a = checker()
+    extra_activities()
     if a == True:
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='site-header']/header/div[@id='rewards-header']/div[@class='l_header_container']/div[@class='l_header_right']/a[@class='redirect_link additional_info']").click()
         driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
@@ -298,6 +298,7 @@ def main():
     time.sleep(1)
     driver.find_element(By.ID,"idSIButton9").click()
     a = checker()
+    extra_activities()
     if a == True:
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='site-header']/header/div[@id='rewards-header']/div[@class='l_header_container']/div[@class='l_header_right']/a[@class='redirect_link additional_info']").click()
         driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
@@ -317,6 +318,27 @@ def main():
     time.sleep(1)
     driver.find_element(By.ID,"idSIButton9").click()
     a = checker()
+    extra_activities()
+    if a == True:
+        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='site-header']/header/div[@id='rewards-header']/div[@class='l_header_container']/div[@class='l_header_right']/a[@class='redirect_link additional_info']").click()
+        driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
+
+    time.sleep(8)
+
+    driver.find_element(By.ID,"raf-signin-link-id").click()
+    time.sleep(1)
+    username = driver.find_element("name", "loginfmt")
+    username.send_keys(config.login_shawn)
+    driver.find_element(By.ID,"idSIButton9").click()
+    time.sleep(1)
+    password = driver.find_element("name", "passwd")
+    password.send_keys(config.password_shawn)
+    time.sleep(1)
+    driver.find_element(By.ID,"idSIButton9").click()
+    time.sleep(1)
+    driver.find_element(By.ID,"idSIButton9").click()
+    a = checker()
+    extra_activities()
     if a == True:
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='site-header']/header/div[@id='rewards-header']/div[@class='l_header_container']/div[@class='l_header_right']/a[@class='redirect_link additional_info']").click()
         driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
