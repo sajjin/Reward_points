@@ -17,7 +17,7 @@ def OneAns(points):
     while int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text) != points:
         try: 
             driver.find_element(By.XPATH, "//div[@id='b_notificationContainer_bop']/span[@id='bnp_hfly_cta2']").click()
-        except:
+        except Exception:
             time.sleep(.05)
         a = driver.find_element(By.XPATH, f"//div[@class='textBasedMultiChoice']/div[{index}]")
         a.click()
@@ -29,7 +29,7 @@ def FiveAns(points):
     while int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text) != points:
         try: 
             driver.find_element(By.XPATH, "//div[@id='b_notificationContainer_bop']/span[@id='bnp_hfly_cta2']").click()
-        except:
+        except Exception:
             time.sleep(.05)
         a = driver.find_element(By.XPATH, f"//div[@class='btOptions']/div[{index}]")
         a.click()
@@ -120,7 +120,7 @@ def checker():
 def first_daily_task():
     try:
         driver.switch_to.window(parent)
-    except:
+    except Exception:
         time.sleep(.05)
     driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double']/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']/a[@class='ds-card-sec ng-scope']/div[@class='actionLink x-hidden-vp1']/span[@class='pointLink ng-binding']").click()
 
@@ -133,18 +133,15 @@ def first_daily_task():
 def secound_daily_task():
     try:
         driver.switch_to.window(parent)
-    except:
+    except Exception:
         time.sleep(.05)
     pointer_checker = driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']/a[@class='ds-card-sec ng-scope']/mee-rewards-points[@class='ng-isolate-scope']/div[@class='points clearfix']/div[@class='ng-scope']/span[@class='c-heading pointsString ng-binding ng-scope']").text
 
-    if int(pointer_checker) == 10:
+    if int(pointer_checker) == 10 or int(pointer_checker) == 50:
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']/a[@class='ds-card-sec ng-scope']/div[@class='actionLink x-hidden-vp1']/span[@class='pointLink ng-binding']").click()
 
         driver.switch_to.window(driver.window_handles[1])
-        driver.close()
     
-    elif int(pointer_checker) == 50:
-        final_daily_task()
 
     else:
         driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']/a[@class='ds-card-sec ng-scope']/div[@class='actionLink x-hidden-vp1']/span[@class='pointLink ng-binding']").click()
@@ -156,42 +153,34 @@ def secound_daily_task():
 
         try: # this is to press the sign in button if there
             driver.find_element(By.XPATH,"/html/body[@class='b_respl']/div[@class='simpleSignIn']/div[@class='signInOptions']/span[@class='identityOption']/a").click()
-        except: # this is to press the start quiz if it dosent as for the sign in botton
+        except Exception: # this is to press the start quiz if it dosent as for the sign in botton
             time.sleep(.05)
         try:
             driver.find_element(By.ID, "id_a").click()
-        except:
+        except Exception:
             time.sleep(.05)
         finally:
             try:
                 time.sleep(2)
                 driver.find_element(By.ID,"rqStartQuiz").click()
-            except:
+            except Exception:
                 time.sleep(2)
 
         try: # this is fot the five answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='btOptions']/div[@class='slide']")))
-            count_of_filled_circles =  driver.find_element(By.XPATH, "//span[@class='btCorOps']/span[@class='bt_corOpStat']/span[@id='bt_corOpCnt']")
-            i = 0
-            x = 3
             points = 0
             time.sleep(8)
-            while i != x:
+            for i in range(0, 3):
                 points += 10
                 FiveAns(points)
-                i += 1
                 time.sleep(8)
-        except: # this is for the one answer correct questions
+        except Exception: # this is for the one answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='textBasedMultiChoice']/div[@class='rq_button']")))
-            count_of_filled_circles =  driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']")
             points = 0
-            i = 0
-            x = 3
             time.sleep(8)
-            while i != x:
+            for i in range(0, 3):
                 points += 10
                 OneAns(points)
-                i += 1
                 time.sleep(8)
     driver.close()
     driver.switch_to.window(parent)
@@ -201,23 +190,23 @@ def final_daily_task():
 
     try:
         driver.switch_to.window(parent)
-    except:
+    except Exception:
         time.sleep(1)
     driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-daily-set-section[@class='ng-scope ng-isolate-scope']/div[@id='daily-sets']/mee-card-group[@class='ng-scope ng-isolate-scope mobileViewMode']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-daily-set-item-content[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container min-dimension']").click()
     try: # this is to press the sign in button if there
         chld = driver.window_handles[1]
         driver.switch_to.window(chld)
         driver.find_element(By.XPATH,"/html/body[@class='b_respl']/div[@class='simpleSignIn']/div[@class='signInOptions']/span[@class='identityOption']/a").click()
-    except:
+    except Exception:
         time.sleep(.05)
     finally:
         time.sleep(2)
         try:
             driver.find_element(By.XPATH, "//div[@class='bt_poll']/div[@class='btOptions2 bt_pollOptions']/div[@id='btoption0']").click()
-        except:
+        except Exception:
             time.sleep(.05)
         finally:
-            time.sleep(2)
+            time.sleep(10)
             driver.close()
     driver.switch_to.window(parent)
 
@@ -225,37 +214,63 @@ def extra_activities():
     driver.switch_to.window(parent)
     
     try:
-        driver.find_element(By.XPATH,"/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
-
-        
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
-    except:
+        try:
+            driver.find_element(By.XPATH,"/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+        except Exception:
+            driver.find_element(By.XPATH,"/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][1]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+            
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+    except Exception:
         time.sleep(.5)
 
     try:
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+        try:
+            driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
 
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
-    except:
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+
+        except Exception:
+            driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][2]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+    except Exception:
         time.sleep(.5)
 
     try:
-        driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][3]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+        try:
+            driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-double'][3]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
 
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
-    except:
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+        except Exception:
+            driver.find_element(By.XPATH, "/html[@class='ltr rewards-dashboard rewards js picture eventlistener k-webkit k-webkit107']/body/div[@id='page-wrapper']/div[@id='main-content-landing']/main[@id='rewards-dashboard']/div[@id='app-host']/ui-view[@class='ng-scope']/mee-rewards-dashboard[@class='ng-scope ng-isolate-scope']/main[@id='rewardsAngular']/div[@class='rewardsContent']/mee-rewards-more-activities-card[@class='ng-scope ng-isolate-scope']/mee-card-group[@id='more-activities']/div[@class='m-card-group']/mee-card[@class='ng-scope ng-isolate-scope c-card f-single'][3]/div[@class='c-card-content']/card-content[@class='ng-scope']/mee-rewards-more-activities-card-item[@class='ng-isolate-scope']/div[@class='text-align-center rewards-card-container']/a[@class='ds-card-sec']").click()
+
+            chld = driver.window_handles[1]
+            driver.switch_to.window(chld)
+            time.sleep(3)
+            driver.close()
+            driver.switch_to.window(parent)
+    except Exception:
         time.sleep(.5)
     driver.switch_to.window(parent)
     
