@@ -118,7 +118,7 @@ def main():
 
 
     webbrowser.open("https://rewards.microsoft.com/")
-    browser = webbrowser.Chrome("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+    browser = webbrowser.Chrome("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
     browser.open("https://rewards.microsoft.com/")
     
     os.system("taskkill /im cmd.exe /f")
