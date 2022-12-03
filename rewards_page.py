@@ -1,5 +1,5 @@
 import time
-import config
+import json
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -8,6 +8,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+f = open('login_info.json')
 
 c = driver.current_window_handle
 parent = driver.window_handles[0]
@@ -139,45 +141,52 @@ def secound_daily_task():
     except Exception:
         pass
     
+    pointer_checker = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[2]/div/card-content/mee-rewards-daily-set-item-content/div/a/mee-rewards-points/div/div/span[2]").text
+
+    if int(pointer_checker) == 10 or int(pointer_checker) == 50:
+        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[2]/div/card-content/mee-rewards-daily-set-item-content/div/a").click()
+
+        driver.switch_to.window(driver.window_handles[1])
+    else:
         
-    driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[2]/div/card-content/mee-rewards-daily-set-item-content/div/a").click()
+        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[2]/div/card-content/mee-rewards-daily-set-item-content/div/a").click()
 
-    time.sleep(2)
-    chld = driver.window_handles[1]
-    driver.switch_to.window(chld)
-    time.sleep(1)
+        time.sleep(2)
+        chld = driver.window_handles[1]
+        driver.switch_to.window(chld)
+        time.sleep(1)
 
-    try: # this is to press the sign in button if there
-        driver.find_element(By.XPATH,"/html/body[@class='b_respl']/div[@class='simpleSignIn']/div[@class='signInOptions']/span[@class='identityOption']/a").click()
-    except Exception: # this is to press the start quiz if it dosent as for the sign in botton
-        pass
-    try:
-        driver.find_element(By.ID, "id_a").click()
-    except Exception:
-        pass
-    finally:
+        try: # this is to press the sign in button if there
+            driver.find_element(By.XPATH,"/html/body[@class='b_respl']/div[@class='simpleSignIn']/div[@class='signInOptions']/span[@class='identityOption']/a").click()
+        except Exception: # this is to press the start quiz if it dosent as for the sign in botton
+            pass
         try:
-            time.sleep(2)
-            driver.find_element(By.ID,"rqStartQuiz").click()
+            driver.find_element(By.ID, "id_a").click()
         except Exception:
-            time.sleep(2)
+            pass
+        finally:
+            try:
+                time.sleep(2)
+                driver.find_element(By.ID,"rqStartQuiz").click()
+            except Exception:
+                time.sleep(2)
 
-    try: # this is fot the five answer correct questions
-        WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='btOptions']/div[@class='slide']")))
-        points = 0
-        time.sleep(8)
-        for i in range(0, 3):
-            points += 10
-            FiveAns(points)
+        try: # this is fot the five answer correct questions
+            WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='btOptions']/div[@class='slide']")))
+            points = 0
             time.sleep(8)
-    except Exception: # this is for the one answer correct questions
-        WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='textBasedMultiChoice']/div[@class='rq_button']")))
-        points = 0
-        time.sleep(8)
-        for i in range(0, 3):
-            points += 10
-            OneAns(points)
+            for i in range(0, 3):
+                points += 10
+                FiveAns(points)
+                time.sleep(8)
+        except Exception: # this is for the one answer correct questions
+            WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='textBasedMultiChoice']/div[@class='rq_button']")))
+            points = 0
             time.sleep(8)
+            for i in range(0, 3):
+                points += 10
+                OneAns(points)
+                time.sleep(8)
     driver.close()
     driver.switch_to.window(parent)
 
@@ -254,86 +263,31 @@ def extra_activities():
     
 
 def main():
-    
+    data = json.load(f)
     driver.get("https://rewards.microsoft.com/")
-    driver.find_element(By.ID,"raf-signin-link-id").click()
-    time.sleep(1)
-    username = driver.find_element("name", "loginfmt")
-    username.send_keys(config.login_reward)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    password = driver.find_element("name", "passwd")
-    password.send_keys(config.password_reward)
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(4)
-    a = checker()
-    extra_activities()
-    if a == True:
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
-        driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
-
-    time.sleep(8)
-
-    driver.find_element(By.ID,"raf-signin-link-id").click()
-    time.sleep(1)
-    username = driver.find_element("name", "loginfmt")
-    username.send_keys(config.login_gmail)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    password = driver.find_element("name", "passwd")
-    password.send_keys(config.password_gmail)
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    a = checker()
-    extra_activities()
-    if a == True:
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
-        driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
-
-    time.sleep(8)
-
-    driver.find_element(By.ID,"raf-signin-link-id").click()
-    time.sleep(1)
-    username = driver.find_element("name", "loginfmt")
-    username.send_keys(config.login_outlook)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    password = driver.find_element("name", "passwd")
-    password.send_keys(config.password_outlook)
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    a = checker()
-    extra_activities()
-    if a == True:
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
-        driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
-
-    time.sleep(8)
-
-    driver.find_element(By.ID,"raf-signin-link-id").click()
-    time.sleep(1)
-    username = driver.find_element("name", "loginfmt")
-    username.send_keys(config.login_shawn)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    password = driver.find_element("name", "passwd")
-    password.send_keys(config.password_shawn)
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    time.sleep(1)
-    driver.find_element(By.ID,"idSIButton9").click()
-    a = checker()
-    extra_activities()
-    if a == True:
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
-        driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
+    for key in data:
+        value = data[key]
+        print(value)
+        driver.find_element(By.ID,"raf-signin-link-id").click()
+        time.sleep(1)
+        username = driver.find_element("name", "loginfmt")
+        username.send_keys(value[0])
+        driver.find_element(By.ID,"idSIButton9").click()
+        time.sleep(1)
+        password = driver.find_element("name", "passwd")
+        password.send_keys(value[1])
+        time.sleep(1)
+        driver.find_element(By.ID,"idSIButton9").click()
+        time.sleep(1)
+        driver.find_element(By.ID,"idSIButton9").click()
+        time.sleep(4)
+        a = checker()
+        extra_activities()
+        if a == True:
+            driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
+            driver.find_element(By.XPATH,"//a[@href='/Signout']").click()
+        time.sleep(8)
+    
     driver.quit()
 
 
