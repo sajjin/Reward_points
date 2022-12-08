@@ -1,5 +1,6 @@
 import time
 import json
+import os
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -8,6 +9,8 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+os.chdir("C:\\Users\\sajji\\Code_Files\\Reward_points")
 
 f = open('login_info.json')
 
@@ -39,9 +42,9 @@ def FiveAns(points):
         index += 1
 
 
-def checker():
+def checker(value):
     driver.switch_to.window(parent)
-    
+
     first_button = driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[1]/div/card-content/mee-rewards-daily-set-item-content/div/a/mee-rewards-points/div/div/span[1]")
     
     second_button = driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-daily-set-section/div/mee-card-group[1]/div/mee-card[2]/div/card-content/mee-rewards-daily-set-item-content/div/a/mee-rewards-points/div/div/span[1]")
@@ -52,28 +55,25 @@ def checker():
     second_button_x = second_button.get_attribute("class").split()
     third_button_x = third_button.get_attribute("class").split()
 
-    print("first pass to check:")
-
     for i in first_button_x:
         if i == "mee-icon-AddMedium":
             first_button_x = i
         elif i == 'mee-icon-SkypeCircleCheck':
             first_button_x = i
-    print(first_button_x)
 
     for i in second_button_x:
         if i == "mee-icon-AddMedium":
             second_button_x = i
         elif i == 'mee-icon-SkypeCircleCheck':
             second_button_x = i
-    print(second_button_x)
 
     for i in third_button_x:
         if i == "mee-icon-AddMedium":
             third_button_x = i
         elif i == 'mee-icon-SkypeCircleCheck':
             third_button_x = i
-    print(third_button_x)
+
+    a = 1
 
     while first_button_x == "mee-icon-AddMedium" or second_button_x == "mee-icon-AddMedium" or third_button_x == "mee-icon-AddMedium":
         driver.refresh()
@@ -89,6 +89,7 @@ def checker():
         second_button_x = second_button.get_attribute("class").split()
         third_button_x = third_button.get_attribute("class").split()
 
+        
 
         for i in first_button_x:
             if i == "mee-icon-AddMedium":
@@ -107,6 +108,8 @@ def checker():
                 third_button_x = i
             elif i == 'mee-icon-SkypeCircleCheck':
                 third_button_x = i
+        
+        print(f"{value[0]},{a},check for\n {first_button_x}\n {second_button_x}\n {third_button_x}\n")
 
         if "mee-icon-AddMedium" in first_button.get_attribute("class").split():
             first_daily_task()
@@ -118,6 +121,7 @@ def checker():
         
         if "mee-icon-AddMedium" in third_button.get_attribute("class").split():
             final_daily_task()
+        a += 1
     if first_button_x == 'mee-icon-SkypeCircleCheck' and second_button_x == 'mee-icon-SkypeCircleCheck' and third_button_x == 'mee-icon-SkypeCircleCheck':
         return True
     
@@ -173,17 +177,17 @@ def secound_daily_task():
 
         try: # this is fot the five answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='btOptions']/div[@class='slide']")))
-            points = 0
+            points = int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text)
             time.sleep(8)
-            for i in range(0, 3):
+            while points != 30:
                 points += 10
                 FiveAns(points)
                 time.sleep(8)
         except Exception: # this is for the one answer correct questions
             WebDriverWait(driver, 5).until(EC.visibility_of_all_elements_located((By.XPATH, "//div[@class='textBasedMultiChoice']/div[@class='rq_button']")))
-            points = 0
+            points = int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text)
             time.sleep(8)
-            for i in range(0, 3):
+            while points != 30:
                 points += 10
                 OneAns(points)
                 time.sleep(8)
@@ -267,7 +271,6 @@ def main():
     driver.get("https://rewards.microsoft.com/")
     for key in data:
         value = data[key]
-        print(value)
         driver.find_element(By.ID,"raf-signin-link-id").click()
         time.sleep(1)
         username = driver.find_element("name", "loginfmt")
@@ -281,7 +284,7 @@ def main():
         time.sleep(1)
         driver.find_element(By.ID,"idSIButton9").click()
         time.sleep(4)
-        a = checker()
+        a = checker(value)
         extra_activities()
         if a == True:
             driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/header/div/div/div[2]/a[2]").click()
@@ -289,6 +292,7 @@ def main():
         time.sleep(8)
     
     driver.quit()
+    os.system("taskkill /im chromedriver.exe /f")
 
 
 if __name__ == '__main__':
