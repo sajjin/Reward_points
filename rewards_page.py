@@ -17,9 +17,18 @@ f = open('login_info.json')
 c = driver.current_window_handle
 parent = driver.window_handles[0]
 
+def close_child_tab():
+        chld = driver.window_handles[1]
+        driver.switch_to.window(chld)
+        time.sleep(3)
+        driver.close()
+        driver.switch_to.window(parent)
+
+
 def OneAns(points):
     index = 1
     while int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text) != points:
+        time.sleep(1)
         try: 
             driver.find_element(By.XPATH, "//div[@id='b_notificationContainer_bop']/span[@id='bnp_hfly_cta2']").click()
         except Exception:
@@ -32,6 +41,7 @@ def OneAns(points):
 def FiveAns(points):
     index = 1
     while int(driver.find_element(By.XPATH, "//span[@class='rqPoints']/span[@class='rqEarnedPoints']/span[@class='rqECredits']").text) != points:
+        time.sleep(1)
         try: 
             driver.find_element(By.XPATH, "//div[@id='b_notificationContainer_bop']/span[@id='bnp_hfly_cta2']").click()
         except Exception:
@@ -109,7 +119,7 @@ def checker(value):
             elif i == 'mee-icon-SkypeCircleCheck':
                 third_button_x = i
         
-        print(f"{value[0]},{a},check for\n {first_button_x}\n {second_button_x}\n {third_button_x}\n")
+        print(f"{value[0]}, check {a}\n {first_button_x}\n {second_button_x}\n {third_button_x}\n")
 
         if "mee-icon-AddMedium" in first_button.get_attribute("class").split():
             first_daily_task()
@@ -234,35 +244,22 @@ def extra_activities():
     try:
             
         driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[1]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
+        close_child_tab()
     except Exception:
         pass
 
-    try:
-           
+    try:    
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[2]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
-
+        close_child_tab()
     except Exception:
         pass
 
     try:
         driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[3]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        chld = driver.window_handles[1]
-        driver.switch_to.window(chld)
-        time.sleep(3)
-        driver.close()
-        driver.switch_to.window(parent)
+        close_child_tab()
     except Exception:
         pass
+
     driver.switch_to.window(parent)
     
 
