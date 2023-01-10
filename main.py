@@ -2,10 +2,9 @@ import json
 import os
 import random
 import time
+from datetime import date
 import webbrowser
-import pywinauto
 
-import keyboard
 
 os.chdir("C:/Users/sajji/Code_Files/Reward_points")
 data = json.load(open("dictionary.json"))
@@ -118,8 +117,19 @@ def main():
 
 
     webbrowser.open("https://rewards.microsoft.com/")
-    browser = webbrowser.Chrome("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
+    browser = webbrowser.Chrome("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
     browser.open("https://rewards.microsoft.com/")
+    browser = webbrowser.Chrome("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
+    browser.open("https://rewards.microsoft.com/")
+
+    today = date.today()
+    weekday = today.weekday()
+
+    if weekday == 6 or weekday == 0 or weekday == 1:
+        os.system('"C:\\Users\\sajji\\AppData\\Local\\Programs\\twinkle-tray\\Twinkle Tray.exe" --All --Set=0')
+        time.sleep(3600)
+        os.system('"C:\\Users\\sajji\\AppData\\Local\\Programs\\twinkle-tray\\Twinkle Tray.exe" --All --Set=100')
+
     
     os.system("taskkill /im cmd.exe /f")
 
