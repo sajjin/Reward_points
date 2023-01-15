@@ -6,7 +6,7 @@ from datetime import date
 import webbrowser
 
 
-os.chdir("C:/Users/sajji/Code_Files/Reward_points")
+os.chdir("../")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
@@ -17,7 +17,7 @@ def counter():
         with open('counter_timer.txt', 'w') as fh:
             counter += 1
             fh.write(str(counter))
-        if counter > 50:
+        if counter < 50:
             with open('dictionary.txt', 'w') as fs:
                 for line in words:
                     fs.write(line)
@@ -101,35 +101,18 @@ def remove_words(contents, remove_list):
             fa.write("\n")
 
 def main():
-    # counter()
-    # edge_browser()
-    # time.sleep(2)
-    # os.system("taskkill /im msedge.exe /f")
+    counter()
+    edge_browser()
+    time.sleep(2)
+    os.system("taskkill /im msedge.exe /f")
            
-    # firefox_browser()
-    # time.sleep(2)
-    # os.system("taskkill /im firefox.exe /f")
+    firefox_browser()
+    time.sleep(2)
+    os.system("taskkill /im firefox.exe /f")
            
-    # chrome_browser()
-    # time.sleep(2)
-    # os.system("taskkill /im chrome.exe /f")
-        
-
-
-    webbrowser.open("https://rewards.microsoft.com/")
-    browser = webbrowser.Chrome("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
-    browser.open("https://rewards.microsoft.com/")
-    browser = webbrowser.Chrome("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
-    browser.open("https://rewards.microsoft.com/")
-
-    today = date.today()
-    weekday = today.weekday()
-
-    if weekday == 6 or weekday == 0 or weekday == 1:
-        os.system('"C:\\Users\\sajji\\AppData\\Local\\Programs\\twinkle-tray\\Twinkle Tray.exe" --All --Set=0')
-        time.sleep(3600)
-        os.system('"C:\\Users\\sajji\\AppData\\Local\\Programs\\twinkle-tray\\Twinkle Tray.exe" --All --Set=100')
-
+    chrome_browser()
+    time.sleep(2)
+    os.system("taskkill /im chrome.exe /f")
     
     os.system("taskkill /im cmd.exe /f")
 
