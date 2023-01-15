@@ -6,7 +6,6 @@ from datetime import date
 import webbrowser
 
 
-os.chdir("../")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
