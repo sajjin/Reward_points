@@ -111,4 +111,5 @@ def main():
     os.system("taskkill /im cmd.exe /f")
 
 
-main()
+if __name__ == '__main__':
+    main()
