@@ -15,7 +15,7 @@ def counter():
         with open('counter_timer.txt', 'w') as fh:
             counter += 1
             fh.write(str(counter))
-        if counter < 50:
+        if counter == 49:
             with open('dictionary.txt', 'w') as fs:
                 for line in words:
                     fs.write(line)
