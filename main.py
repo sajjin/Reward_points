@@ -2,10 +2,9 @@ import json
 import os
 import random
 import time
-from datetime import date
 import webbrowser
 
-
+os.chdir("../")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
@@ -108,10 +107,6 @@ def main():
     firefox_browser()
     time.sleep(2)
     os.system("taskkill /im firefox.exe /f")
-           
-    chrome_browser()
-    time.sleep(2)
-    os.system("taskkill /im chrome.exe /f")
     
     os.system("taskkill /im cmd.exe /f")
 
