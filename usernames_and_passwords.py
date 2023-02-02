@@ -2,7 +2,9 @@ import PySimpleGUI as sg
 import threading
 import pathlib
 import json
+import os
 
+dir = os.chdir('../')
 sg.ChangeLookAndFeel('Dark')
 
 def json_add(name, username, password):
