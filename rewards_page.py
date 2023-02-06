@@ -241,27 +241,12 @@ def final_daily_task():
 def extra_activities():
     driver.switch_to.window(parent)
     
-    try:
-            
-        driver.find_element(By.XPATH,"/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[1]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        close_child_tab()
-    except Exception:
-        pass
+    a = driver.find_elements(By.CLASS_NAME, 'mee-icon-AddMedium')
+    for x in range(0,len(a)):
+        if a[x].is_displayed():
+            a[x].click()
+            close_child_tab()
 
-    try:    
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[2]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        close_child_tab()
-    except Exception:
-        pass
-
-    try:
-        driver.find_element(By.XPATH, "/html/body/div[1]/div[2]/main/div/ui-view/mee-rewards-dashboard/main/div/mee-rewards-more-activities-card/mee-card-group/div/mee-card[3]/div/card-content/mee-rewards-more-activities-card-item/div/a").click()
-        close_child_tab()
-    except Exception:
-        pass
-
-    driver.switch_to.window(parent)
-    
 
 def main():
     data = json.load(f)
