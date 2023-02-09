@@ -3,6 +3,7 @@ import os
 import random
 import time
 import webbrowser
+import keyboard
 
 os.chdir("../")
 data = json.load(open("dictionary.json"))
@@ -86,6 +87,8 @@ def edge_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
+            time.sleep(1)
+            keyboard.press_and_release("CTRL+F4")
             b += 1
             time.sleep(random.randint(1, 2))
         remove_words(contents, remove_list)
