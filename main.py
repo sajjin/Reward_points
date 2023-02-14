@@ -44,7 +44,7 @@ def firefox_browser():
                 word = random.choice(contents)
             browser.open("https://bing.com/search?q=%s" % word)
             time.sleep(3)
-            keyboard.press_and_release("CTRL+F4")
+            keyboard.press_and_release("CTRL+W")
             a += 1
             time.sleep(random.randint(1, 2))
         remove_words(contents, remove_list)
