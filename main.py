@@ -43,10 +43,10 @@ def firefox_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open("https://bing.com/search?q=%s" % word)
-            time.sleep(3)
-            keyboard.press_and_release("CTRL+W")
             a += 1
             time.sleep(random.randint(1, 2))
+            time.sleep(3)
+            keyboard.press_and_release("CTRL+W")
         remove_words(contents, remove_list)
 
 
