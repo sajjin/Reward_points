@@ -35,6 +35,9 @@ def firefox_browser():
 
         browser = webbrowser.Mozilla("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
         browser.open("https://bing.com")
+        time.sleep(1)
+        keyboard.press_and_release("CTRL+F4")
+        browser.open("https://bing.com")
         time.sleep(5)
         while a != 20:
             word = random.choice(contents)
@@ -43,10 +46,10 @@ def firefox_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open("https://bing.com/search?q=%s" % word)
+            time.sleep(3)
+            keyboard.press_and_release("CTRL+F4")
             a += 1
             time.sleep(random.randint(1, 2))
-            time.sleep(3)
-            keyboard.press_and_release("CTRL+W")
         remove_words(contents, remove_list)
 
 
@@ -68,6 +71,8 @@ def chrome_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open("https://bing.com/search?q=%s" % word)
+            time.sleep(3)
+            keyboard.press_and_release("CTRL+F4")
             b += 1
             time.sleep(random.randint(2, 3))
         remove_words(contents, remove_list)
@@ -81,6 +86,9 @@ def edge_browser():
         remove_list = []
         b = 0
         browser = webbrowser.Chrome("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+        browser.open("https://bing.com")
+        time.sleep(1)
+        keyboard.press_and_release("CTRL+F4")
         browser.open("https://bing.com")
         while b != 50:
             word = random.choice(contents)
