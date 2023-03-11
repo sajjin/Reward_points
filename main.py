@@ -37,6 +37,8 @@ def firefox_browser():
         browser.open("https://bing.com")
         time.sleep(1)
         keyboard.press_and_release("CTRL+F4")
+        time.sleep(1)
+        keyboard.press_and_release("CTRL+F4")
         browser.open("https://bing.com")
         time.sleep(5)
         while a != 20:
