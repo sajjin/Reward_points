@@ -99,7 +99,7 @@ def edge_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
-            time.sleep(2)
+            time.sleep(3)
             keyboard.press_and_release("CTRL+F4")
             b += 1
             time.sleep(random.randint(1, 2))
