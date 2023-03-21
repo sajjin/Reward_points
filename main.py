@@ -6,7 +6,7 @@ import time
 import webbrowser
 import keyboard
 
-# os.chdir("../")
+os.chdir("/home/rewards/Documents/Reward_points-master")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
