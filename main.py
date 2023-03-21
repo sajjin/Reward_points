@@ -4,7 +4,6 @@ import os
 import random
 import time
 import webbrowser
-import keyboard
 
 os.chdir("/home/rewards/Documents/Reward_points-master")
 data = json.load(open("dictionary.json"))
@@ -36,11 +35,6 @@ def firefox_browser():
 
         browser = webbrowser.Mozilla("/snap/bin/firefox")
         browser.open("https://bing.com")
-        time.sleep(1)
-        keyboard.press_and_release("CTRL+F4")
-        time.sleep(1)
-        keyboard.press_and_release("CTRL+F4")
-        browser.open("https://bing.com")
         time.sleep(5)
         while a != 20:
             word = random.choice(contents)
@@ -49,8 +43,6 @@ def firefox_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open("https://bing.com/search?q=%s" % word)
-            time.sleep(3)
-            keyboard.press_and_release("CTRL+F4")
             a += 1
             time.sleep(random.randint(1, 2))
         remove_words(contents, remove_list)
@@ -65,9 +57,6 @@ def edge_browser():
         b = 0
         browser = webbrowser.Chrome("/usr/bin/microsoft-edge-stable")
         browser.open("https://bing.com")
-        time.sleep(1)
-        keyboard.press_and_release("CTRL+F4")
-        browser.open("https://bing.com")
         while b != 50:
             word = random.choice(contents)
             if word not in remove_list:
@@ -75,8 +64,6 @@ def edge_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
-            time.sleep(3)
-            keyboard.press_and_release("CTRL+F4")
             b += 1
             time.sleep(random.randint(1, 2))
         remove_words(contents, remove_list)
