@@ -6,7 +6,7 @@ import time
 import webbrowser
 import keyboard
 
-os.chdir("../")
+# os.chdir("../")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
