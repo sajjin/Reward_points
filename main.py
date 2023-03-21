@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 import os
 import random
@@ -33,7 +34,7 @@ def firefox_browser():
         remove_list = []
         a = 0
 
-        browser = webbrowser.Mozilla("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
+        browser = webbrowser.Mozilla("/snap/bin/firefox")
         browser.open("https://bing.com")
         time.sleep(1)
         keyboard.press_and_release("CTRL+F4")
@@ -55,31 +56,6 @@ def firefox_browser():
         remove_words(contents, remove_list)
 
 
-def chrome_browser():
-    with open('dictionary.txt') as f:
-        contents = f.read()
-        contents = contents.lower()
-        contents = contents.split("\n")
-        remove_list = []
-        b = 0
-
-        browser = webbrowser.Chrome("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe")
-        browser.open("https://bing.com")
-        time.sleep(5)
-        while b != 20:
-            word = random.choice(contents)
-            if word not in remove_list:
-                remove_list.append(word)
-            elif word in remove_list:
-                word = random.choice(contents)
-            browser.open("https://bing.com/search?q=%s" % word)
-            time.sleep(3)
-            keyboard.press_and_release("CTRL+F4")
-            b += 1
-            time.sleep(random.randint(2, 3))
-        remove_words(contents, remove_list)
-
-
 def edge_browser():
     with open('dictionary.txt') as f:
         contents = f.read()
@@ -87,7 +63,7 @@ def edge_browser():
         contents = contents.split("\n")
         remove_list = []
         b = 0
-        browser = webbrowser.Chrome("C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe")
+        browser = webbrowser.Chrome("/usr/bin/microsoft-edge-stable")
         browser.open("https://bing.com")
         time.sleep(1)
         keyboard.press_and_release("CTRL+F4")
@@ -117,13 +93,13 @@ def main():
     counter()
     edge_browser()
     time.sleep(2)
-    os.system("taskkill /im msedge.exe /f")
+    os.system("kill $(pidof msedge)")
            
     firefox_browser()
     time.sleep(2)
-    os.system("taskkill /im firefox.exe /f")
+    os.system("kill $(pidof firefox)")
     
-    os.system("shutdown /s /f")
+    os.system("shutdown")
 
 
 if __name__ == '__main__':
