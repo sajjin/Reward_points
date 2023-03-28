@@ -1,1 +1,7 @@
+GitPython==3.1.31
 keyboard==0.13.5
+mouse==0.7.1
+PySimpleGUI==4.60.4
+screen_brightness_control==0.20.0
+selenium==4.8.3
+webdriver_manager==3.8.5
