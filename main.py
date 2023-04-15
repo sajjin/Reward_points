@@ -36,7 +36,7 @@ def firefox_browser():
         browser = webbrowser.Mozilla("/snap/bin/firefox")
         browser.open("https://bing.com")
         time.sleep(5)
-        while a != 30:
+        while a != 45:
             word = random.choice(contents)
             if word not in remove_list:
                 remove_list.append(word)
