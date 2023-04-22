@@ -57,7 +57,7 @@ def edge_browser():
         b = 0
         browser = webbrowser.Chrome("/usr/bin/microsoft-edge-stable")
         browser.open("https://bing.com")
-        while b != 50:
+        while b != 75:
             word = random.choice(contents)
             if word not in remove_list:
                 remove_list.append(word)
