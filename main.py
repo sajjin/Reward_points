@@ -42,6 +42,9 @@ def firefox_browser():
                 remove_list.append(word)
             elif word in remove_list:
                 word = random.choice(contents)
+            if a == 20:
+                os.system("kill $(pidof firefox)")
+                time.sleep(3)
             browser.open("https://bing.com/search?q=%s" % word)
             a += 1
             time.sleep(random.randint(2, 3))
@@ -63,6 +66,9 @@ def edge_browser():
                 remove_list.append(word)
             elif word in remove_list:
                 word = random.choice(contents)
+            if b == 35:
+                os.system("kill $(pidof msedge)")
+                time.sleep(3)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
             b += 1
             time.sleep(random.randint(1, 2))
