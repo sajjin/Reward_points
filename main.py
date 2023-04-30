@@ -85,11 +85,11 @@ def remove_words(contents, remove_list):
 def main():
     counter()
     edge_browser()
-    time.sleep(2)
+    time.sleep(10)
     os.system("kill $(pidof msedge)")
            
     firefox_browser()
-    time.sleep(2)
+    time.sleep(10)
     os.system("kill $(pidof firefox)")
     
     os.system("shutdown")
