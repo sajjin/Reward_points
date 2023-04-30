@@ -47,7 +47,7 @@ def firefox_browser():
                 time.sleep(3)
             browser.open("https://bing.com/search?q=%s" % word)
             a += 1
-            time.sleep(random.randint(2, 3))
+            time.sleep(random.randint(2, 7))
         remove_words(contents, remove_list)
 
 
@@ -71,7 +71,7 @@ def edge_browser():
                 time.sleep(5)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
             b += 1
-            time.sleep(random.randint(1, 2))
+            time.sleep(random.randint(2, 7))
         remove_words(contents, remove_list)
 
 
