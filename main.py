@@ -90,7 +90,7 @@ def GUI():
         [sg.Button("Run Mobile only")]
     ]
 
-    window = sg.Window("Hello World", layout)
+    window = sg.Window("Rewards", layout)
     while True:
         event, values = window.read(timeout = 1000 * 10)
         print(event, values)
