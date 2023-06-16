@@ -4,7 +4,9 @@ import os
 import random
 import time
 import webbrowser
+import PySimpleGUI as sg
 
+start_time = time.time()
 os.chdir("/home/rewards/Documents/Reward_points-master")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
@@ -82,12 +84,43 @@ def remove_words(contents, remove_list):
             fa.write(line)
             fa.write("\n")
 
+def GUI():
+    layout = [
+        [sg.Button("Run PC only")],
+        [sg.Button("Run Mobile only")]
+    ]
+
+    window = sg.Window("Hello World", layout)
+    while True:
+        event, values = window.read(timeout = 1000 * 10)
+        print(event, values)
+        if event in ('__TIMEOUT__',):
+            print('timed execution inside event loop')
+            break
+        if event == sg.WIN_CLOSED:
+            break
+        elif event == "Run PC only":
+            edge_browser()
+            time.sleep(10)
+            os.system("kill $(pidof msedge)")
+            break
+        elif event == "Run Mobile only":
+            firefox_browser()
+            time.sleep(10)
+            os.system("kill $(pidof firefox)")
+            break
+
+    window.close()
+
+
 def main():
     counter()
+    GUI()
+
     edge_browser()
     time.sleep(10)
     os.system("kill $(pidof msedge)")
-           
+
     firefox_browser()
     time.sleep(10)
     os.system("kill $(pidof firefox)")
