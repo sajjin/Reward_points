@@ -92,7 +92,7 @@ def GUI():
 
     window = sg.Window("Rewards", layout)
     while True:
-        event, values = window.read(timeout = 1000 * 10)
+        event, values = window.read(timeout = 1000 * 15)
         print(event, values)
         if event in ('__TIMEOUT__',):
             print('timed execution inside event loop')
