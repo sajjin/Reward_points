@@ -96,18 +96,28 @@ def GUI():
         print(event, values)
         if event in ('__TIMEOUT__',):
             print('timed execution inside event loop')
-            break
+            edge_browser()
+            time.sleep(10)
+            os.system("kill $(pidof msedge)")
+
+            firefox_browser()
+            time.sleep(10)
+            os.system("kill $(pidof firefox)")
+            
+            os.system("shutdown")
         if event == sg.WIN_CLOSED:
             break
         elif event == "Run PC only":
             edge_browser()
             time.sleep(10)
             os.system("kill $(pidof msedge)")
+            os.system("shutdown")
             break
         elif event == "Run Mobile only":
             firefox_browser()
             time.sleep(10)
             os.system("kill $(pidof firefox)")
+            os.system("shutdown")
             break
 
     window.close()
@@ -116,17 +126,6 @@ def GUI():
 def main():
     counter()
     GUI()
-
-    edge_browser()
-    time.sleep(10)
-    os.system("kill $(pidof msedge)")
-
-    firefox_browser()
-    time.sleep(10)
-    os.system("kill $(pidof firefox)")
-    
-    os.system("shutdown")
-
 
 if __name__ == '__main__':
     main()
