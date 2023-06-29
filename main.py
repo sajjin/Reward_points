@@ -95,6 +95,7 @@ def GUI():
         event, values = window.read(timeout = 1000 * 15)
         print(event, values)
         if event in ('__TIMEOUT__',):
+            window.close()
             edge_browser()
             time.sleep(10)
             os.system("kill $(pidof msedge)")
@@ -105,20 +106,22 @@ def GUI():
             
             os.system("shutdown")
         elif event == sg.WIN_CLOSED:
+            window.close()
             break
         elif event == "Run PC only":
+            window.close()
             edge_browser()
             time.sleep(10)
             os.system("kill $(pidof msedge)")
             os.system("shutdown")
             break
         elif event == "Run Mobile only":
+            window.close()
             firefox_browser()
             time.sleep(10)
             os.system("kill $(pidof firefox)")
             os.system("shutdown")
             break
-    window.close()
         
 
 def main():
