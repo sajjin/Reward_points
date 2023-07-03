@@ -38,7 +38,7 @@ def firefox_browser():
         browser = webbrowser.Mozilla("/snap/bin/firefox")
         browser.open("https://bing.com")
         time.sleep(5)
-        while a != 45:
+        while a != 40:
             word = random.choice(contents)
             if word not in remove_list:
                 remove_list.append(word)
@@ -62,7 +62,7 @@ def edge_browser():
         b = 0
         browser = webbrowser.Chrome("/usr/bin/microsoft-edge-stable")
         browser.open("https://bing.com")
-        while b != 100:
+        while b != 60:
             word = random.choice(contents)
             if word not in remove_list:
                 remove_list.append(word)
