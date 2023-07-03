@@ -7,7 +7,7 @@ import webbrowser
 import PySimpleGUI as sg
 
 start_time = time.time()
-os.chdir("/home/rewards/Documents/Reward_points-master/assets")
+os.chdir("/home/rewards/Documents/Reward_points-master")
 data = json.load(open("dictionary.json"))
 words = list(data.keys())
 
