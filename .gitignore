@@ -1,10 +1,14 @@
 test.py
 login_info.json
+login_info_copy.json
+chromedriver.exe
 
 *.bat
 *.vbs
 *.spec
+.txt
 /build
 /dist
+/Logs
 .idea
 __pycache__
