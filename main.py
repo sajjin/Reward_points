@@ -64,7 +64,7 @@ def edge_browser():
         contents = contents.split("\n")
         remove_list = []
         b = 0
-        browser = webbrowser.Chrome("")
+        browser = webbrowser.Chrome("/opt/microsoft/msedge/microsoft-msedge")
         browser.open("https://bing.com")
         while b != 60:
             word = random.choice(contents)
