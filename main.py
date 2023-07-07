@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 import json
-import re
 import os
 import random
 import time
