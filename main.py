@@ -74,8 +74,6 @@ def edge_browser():
                 word = random.choice(contents)
             ran_mouse_pos = str(random.choice(mouse_searchbar_pos))
             ran_mouse_pos = re.sub("[()]", "", ran_mouse_pos).split(", ")
-            mouse.wheel(-1)
-            mouse.wheel(1)
             mouse.move(int(ran_mouse_pos[0]), int(ran_mouse_pos[1]), duration=.5)
             mouse.click("left")
             time.sleep(5)
