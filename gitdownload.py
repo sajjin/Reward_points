@@ -15,5 +15,5 @@ shutil.move( f"{t}/requirements.txt", '/home/rewards/Documents/Reward_points-mas
 # Remove temporary dir
 os.system("pip3 install -r requirements.txt")
 os.system("python3 main.py")
-os.system('rmdir /S /Q "{}"'.format(t))
+os.system('rm -r "{}"'.format(t))
 os.remove("main.py")
