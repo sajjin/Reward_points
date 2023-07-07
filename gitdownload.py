@@ -10,8 +10,8 @@ t = tempfile.mkdtemp()
 # Clone into temporary dir
 git.Repo.clone_from('https://github.com/sajjin/Reward_points.git', t, branch='master', depth=1)
 # Copy desired file from temporary dir
-shutil.move( f"{t}/main.py", '/home/rewards/Reward_points-master/main.py')
-shutil.move( f"{t}/requirements.txt", '/home/rewards/Reward_points-master/requirements.txt')
+shutil.move( f"{t}/main.py", '/home/rewards/Documents/Reward_points-master/main.py')
+shutil.move( f"{t}/requirements.txt", '/home/rewards/Documents/Reward_points-master/requirements.txt')
 # Remove temporary dir
 os.system("pip3 install -r requirements.txt")
 os.system("python3 main.py")
