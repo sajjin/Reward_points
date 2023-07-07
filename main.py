@@ -6,8 +6,7 @@ import random
 import time
 import webbrowser
 import PySimpleGUI as sg
-import keyboard
-import mouse
+
 
 start_time = time.time()
 os.chdir("/home/rewards/Documents/Reward_points-master")
@@ -58,7 +57,6 @@ def firefox_browser():
 
 def edge_browser():
     with open('dictionary.txt') as f:
-        mouse_searchbar_pos = [(728, 86), (681, 81), (1173, 81), (247, 77)]
         contents = f.read()
         contents = contents.lower()
         contents = contents.split("\n")
@@ -72,10 +70,6 @@ def edge_browser():
                 remove_list.append(word)
             elif word in remove_list:
                 word = random.choice(contents)
-            ran_mouse_pos = str(random.choice(mouse_searchbar_pos))
-            ran_mouse_pos = re.sub("[()]", "", ran_mouse_pos).split(", ")
-            mouse.move(int(ran_mouse_pos[0]), int(ran_mouse_pos[1]), duration=.5)
-            mouse.click("left")
             time.sleep(5)
             if b == 50:
                 os.system("kill $(pidof msedge)")
