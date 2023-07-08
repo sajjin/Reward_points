@@ -3,6 +3,8 @@ import git
 import shutil
 import tempfile
 
+os.chdir('/home/rewards/Documents/Reward_points-master')
+
 if os.path.exists('main.py'):
     os.remove("main.py")
 # Create temporary dir
