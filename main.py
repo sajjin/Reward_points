@@ -70,7 +70,7 @@ def edge_browser():
             elif word in remove_list:
                 word = random.choice(contents)
             time.sleep(5)
-            if b == 50:
+            if b == 30:
                 os.system("kill $(pidof msedge)")
                 time.sleep(5)
             browser.open_new_tab("https://bing.com/search?q=%s" % word)
