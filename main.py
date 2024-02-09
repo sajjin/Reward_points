@@ -6,6 +6,7 @@ import time
 import webbrowser
 import PySimpleGUI as sg
 
+# THIS IS FOR LINUX ONLY
 
 start_time = time.time()
 os.chdir("/home/rewards/Documents/Reward_points-master")

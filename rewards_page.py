@@ -10,6 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
+# CHANGE ME TO THE DIRECTORY THE FILE IS IN
 os.chdir("C:\\Users\\sajji\\Code_Files\\Reward_points")
 
 f = open('login_info.json')
