@@ -5,8 +5,18 @@ import random
 import time
 import webbrowser
 import PySimpleGUI as sg
+import cv2
+import pyautogui
+import numpy as np
 
-# THIS IS FOR LINUX ONLY
+# Load the image of the object you want to detect
+template = cv2.imread('object.png', 0)
+w, h = template.shape[::-1]
+
+# Take a screenshot
+screenshot = pyautogui.screenshot()
+screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+screenshot_gray = cv2.cvtColor(screenshot, cv2.COLOR_BGR2GRAY)
 
 start_time = time.time()
 os.chdir("/home/rewards/Documents/Reward_points-master")
@@ -74,7 +84,16 @@ def edge_browser():
             if b == 30:
                 os.system("kill $(pidof msedge)")
                 time.sleep(5)
-            browser.open_new_tab("https://bing.com/search?q=%s" % word)
+            # Perform template matching
+            res = cv2.matchTemplate(screenshot_gray, template, cv2.TM_CCOEFF_NORMED)
+            threshold = 0.8
+            loc = np.where(res >= threshold)
+            # Click and type on the detected object
+            for pt in zip(*loc[::-1]):
+                pyautogui.click(pt[0] + w/2, pt[1] + h/2)
+                pyautogui.write(word)
+                pyautogui.press('enter')
+            pyautogui.press('ctrl+t')
             b += 1
             time.sleep(random.randint(5, 10))
         remove_words(contents, remove_list)
