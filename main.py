@@ -13,11 +13,6 @@ import numpy as np
 template = cv2.imread('object.png', 0)
 w, h = template.shape[::-1]
 
-# Take a screenshot
-screenshot = pyautogui.screenshot()
-screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
-screenshot_gray = cv2.cvtColor(screenshot, cv2.COLOR_BGR2GRAY)
-
 start_time = time.time()
 os.chdir("/home/rewards/Documents/Reward_points-master")
 data = json.load(open("dictionary.json"))
@@ -84,6 +79,10 @@ def edge_browser():
             if b == 30:
                 os.system("kill $(pidof msedge)")
                 time.sleep(5)
+            # Take a screenshot
+            screenshot = pyautogui.screenshot()
+            screenshot = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+            screenshot_gray = cv2.cvtColor(screenshot, cv2.COLOR_BGR2GRAY)
             # Perform template matching
             res = cv2.matchTemplate(screenshot_gray, template, cv2.TM_CCOEFF_NORMED)
             threshold = 0.8
@@ -93,7 +92,7 @@ def edge_browser():
                 pyautogui.click(pt[0] + w/2, pt[1] + h/2)
                 pyautogui.write(word)
                 pyautogui.press('enter')
-            pyautogui.press('ctrl+t')
+            browser.open_new_tab(home_url) # replace home_url with the URL of the home page
             b += 1
             time.sleep(random.randint(5, 10))
         remove_words(contents, remove_list)
